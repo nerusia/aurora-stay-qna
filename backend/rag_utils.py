@@ -37,6 +37,7 @@ def generate(query, retrieved_chunks,model) -> str:
     10. If the information is insufficient, say:
         "The available policy documents do not contain enough information to answer this question."
         If the retrieved information conflicts, clearly mention the conflict.
+    11. Do not hallucinate the content. Generate answers using only retrieved content
 
     Answer:
     """
@@ -46,7 +47,7 @@ def generate(query, retrieved_chunks,model) -> str:
 # Define the full RAG pipeline combining retrieval and generation
 def rag(
     query: str,
-    k: int = 2,
+    k: int = 5,
     model_name: str = "gpt-4o-mini",
     temperature: float = 0.0,
     top_p: float = 1.0,
